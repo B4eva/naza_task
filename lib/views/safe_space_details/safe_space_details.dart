@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:naza_task/views/Home/home.dart';
 import 'package:naza_task/views/safe_space_details/components/body.dart';
+import 'package:naza_task/views/views.dart';
 
 class SafeSpaceView extends StatelessWidget {
   static String routeName = 'safeSpace_page';
@@ -22,7 +23,7 @@ class SafeSpaceView extends StatelessWidget {
             )),
         leading: IconButton(
           onPressed: () {
-            Navigator.popAndPushNamed(context, Home.routeName);
+            Navigator.popAndPushNamed(context, SessionEnded.routeName);
           },
           icon: const Icon(
             Icons.arrow_back_ios,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:naza_task/const_strings.dart';
 import 'package:naza_task/models/match.dart';
+import 'package:naza_task/views/views.dart';
 
 class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);
@@ -78,7 +79,8 @@ class Body extends StatelessWidget {
                     children: [
                       CircleAvatar(
                         backgroundColor: Colors.red[100],
-                        backgroundImage: NetworkImage(''),
+                        backgroundImage: const NetworkImage(
+                            'https://picsum.photos/250?image=9'),
                         maxRadius: 20,
                       ),
                       Flexible(
@@ -93,7 +95,12 @@ class Body extends StatelessWidget {
               );
             },
           ),
-        )
+        ),
+        TextButton(
+            onPressed: () {
+              Navigator.pushNamed(context, SessionEnded.routeName);
+            },
+            child: const Text('For testing'))
       ],
     );
   }

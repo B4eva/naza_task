@@ -33,23 +33,23 @@ class _BodyState extends State<Body> {
                 decoration: BoxDecoration(
                     color: Colors.red[50],
                     borderRadius: BorderRadius.circular(20)),
-                child: const Center(
+                child: Center(
                   child: TextField(
                     decoration: InputDecoration(
-                      enabledBorder: InputBorder.none,
-                      focusedBorder: InputBorder.none,
-                      hintText: search,
-                      prefixIcon: Icon(Icons.search, color: Colors.redAccent),
-                      hintStyle: TextStyle(color: Colors.redAccent),
-                      // contentPadding:
-                      //     EdgeInsets.symmetric(horizontal: 10, vertical: 5)
-                    ),
+                        enabledBorder: InputBorder.none,
+                        focusedBorder: InputBorder.none,
+                        hintText: search,
+                        prefixIcon: Icon(Icons.search, color: Colors.red[200]),
+                        hintStyle: TextStyle(color: Colors.red[50]),
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 10,
+                        )),
                   ),
                 ),
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
             ListView.builder(
                 itemCount: matches.length,
@@ -83,7 +83,9 @@ class _MatchesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        // print(name);
+      },
       child: Container(
         padding:
             const EdgeInsets.only(left: 16, right: 16, top: 10, bottom: 10),
@@ -117,10 +119,14 @@ class _MatchesList extends StatelessWidget {
               ),
             ),
             IconButton(
-              icon: const Icon(Icons.question_answer_outlined,
-                  color: Colors.pinkAccent),
+              icon:
+                  Icon(Icons.question_answer_outlined, color: Colors.pink[50]),
               onPressed: () {},
             ),
+            const Divider(
+              color: Colors.grey,
+              thickness: 5,
+            )
           ],
         ),
       ),

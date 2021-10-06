@@ -40,7 +40,8 @@ class _BodyState extends State<Body> {
                         focusedBorder: InputBorder.none,
                         hintText: search,
                         prefixIcon: Icon(Icons.search, color: Colors.red[200]),
-                        hintStyle: TextStyle(color: Colors.red[50]),
+                        hintStyle:
+                            TextStyle(color: Colors.red[200], fontSize: 12),
                         contentPadding: const EdgeInsets.symmetric(
                           horizontal: 10,
                         )),

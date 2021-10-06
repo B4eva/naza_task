@@ -31,6 +31,9 @@ class _SessionEndedState extends State<SessionEnded> {
               flex: 4,
               child: Column(
                 children: [
+                  const SizedBox(
+                    height: 30,
+                  ),
                   const Text(
                     'Session has Ended \nplease rate your experience',
                     textAlign: TextAlign.center,

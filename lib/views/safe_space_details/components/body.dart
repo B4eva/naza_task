@@ -23,6 +23,7 @@ class Body extends StatelessWidget {
                     width: 250,
                     child: Text(
                       text1,
+                      overflow: TextOverflow.ellipsis,
                       style: TextStyle(fontSize: 15, color: Colors.red[100]),
                       textAlign: TextAlign.center,
                     ),
@@ -34,6 +35,7 @@ class Body extends StatelessWidget {
                     width: 200,
                     child: Text(
                       text2,
+                      overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 10),
                     ),
@@ -85,6 +87,7 @@ class Body extends StatelessWidget {
                       ),
                       Flexible(
                         child: Text(match[index].name!,
+                            overflow: TextOverflow.ellipsis,
                             style: const TextStyle(
                                 fontSize: 10, color: Colors.black),
                             textAlign: TextAlign.center),

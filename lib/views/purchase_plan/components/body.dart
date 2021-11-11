@@ -61,73 +61,72 @@ class _BodyState extends State<Body> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        const SizedBox(
-          height: 40,
-        ),
-        Text(
-          'ON-DEMAND PLANS'..toUpperCase(),
-          style: const TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.bold,
+    return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          const SizedBox(
+            height: 40,
           ),
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-          child: SizedBox(
-            height: 150,
-            child: PageView.builder(
-                onPageChanged: (value) {
-                  setState(() {
-                    currentPage = value;
-                    // print(currentPage);
-                  });
-                },
-                itemCount: buildContainer.length,
-                itemBuilder: (context, index) => BuildContainer(
-                      amount: buildContainer[index]['amount'],
-                      subText: buildContainer[index]['subText'],
-                      text: buildContainer[index]['text'],
-                      color: currentPage == 0 ? Colors.red : Colors.green,
-                      color2: currentPage == 0
-                          ? Colors.red[100]
-                          : Colors.green[100],
-                    )),
+          Text(
+            'ON-DEMAND PLANS'..toUpperCase(),
+            style: const TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ...List.generate(
-                buildContainer.length,
-                (index) => DotContainer(
-                      color: currentPage == index
-                          ? Colors.black
-                          : Colors.blueGrey[300],
-                      width: currentPage == index ? 20.6 : 6.0,
-                    ))
-          ],
-        ),
-        const SizedBox(
-          height: 60,
-        ),
-        Text(
-          'Subscription plans.'.toUpperCase(),
-          style: const TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.bold,
+          const SizedBox(
+            height: 10,
           ),
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-          child: SizedBox(
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+            child: SizedBox(
+              height: 150,
+              child: PageView.builder(
+                  onPageChanged: (value) {
+                    setState(() {
+                      currentPage = value;
+                      // print(currentPage);
+                    });
+                  },
+                  itemCount: buildContainer.length,
+                  itemBuilder: (context, index) => BuildContainer(
+                        amount: buildContainer[index]['amount'],
+                        subText: buildContainer[index]['subText'],
+                        text: buildContainer[index]['text'],
+                        color: currentPage == 0 ? Colors.red : Colors.green,
+                        color2: currentPage == 0
+                            ? Colors.red[100]
+                            : Colors.green[100],
+                      )),
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ...List.generate(
+                  buildContainer.length,
+                  (index) => DotContainer(
+                        color: currentPage == index
+                            ? Colors.black
+                            : Colors.blueGrey[300],
+                        width: currentPage == index ? 20.6 : 6.0,
+                      ))
+            ],
+          ),
+          const SizedBox(
+            height: 60,
+          ),
+          Text(
+            'Subscription plans.'.toUpperCase(),
+            style: const TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          SizedBox(
             height: 200,
             child: PageView.builder(
                 onPageChanged: (value) {
@@ -148,21 +147,24 @@ class _BodyState extends State<Body> {
                       date: buildContainer2[index]['date'],
                     )),
           ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ...List.generate(
-                buildContainer2.length,
-                (index) => DotContainer(
-                      color: currentPage2 == index
-                          ? Colors.black
-                          : Colors.blueGrey[300],
-                      width: currentPage2 == index ? 20.6 : 6.0,
-                    ))
-          ],
-        ),
-      ],
+          const SizedBox(
+            height: 5,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ...List.generate(
+                  buildContainer2.length,
+                  (index) => DotContainer(
+                        color: currentPage2 == index
+                            ? Colors.black
+                            : Colors.blueGrey[300],
+                        width: currentPage2 == index ? 20.6 : 6.0,
+                      ))
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

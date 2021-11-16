@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:naza_task/routes.dart';
-
-import 'views/views.dart';
+import 'package:naza_task/views/start_conversation/start_conversation.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: PurchasePlanView.routeName,
+      initialRoute: StartConversation.routeName,
       routes: routes,
     );
   }

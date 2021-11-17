@@ -10,7 +10,6 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        // ignore: sized_box_for_whitespace
         Container(
             decoration: BoxDecoration(color: Colors.red[50]),
             width: double.infinity,
@@ -55,7 +54,6 @@ class Body extends StatelessWidget {
         const SizedBox(
           height: 20,
         ),
-
         Expanded(
           child: GridView.builder(
             itemCount: match.length,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:naza_task/views/update_meet/componenets/my_slider.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -10,10 +11,32 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   double val = 1;
   double val2 = 1;
+  int boxValue = 0;
+  int boxValue2 = 0;
+  int boxValue3 = 0;
+  final List<String> items = <String>[
+    "Single moms",
+    "married moms",
+    "Divorced moms",
+    "Widowed moms",
+    "Anyone",
+  ];
+  final List<String> items2 = <String>[
+    "Staying at home",
+    "Working",
+    "Schooling",
+    "Any",
+  ];
+  final List<String> items3 = <String>[
+    "Pregnant",
+    "Nursing",
+    "Raising kids",
+    "Tring to concieve",
+    "Any"
+  ];
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
+    return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -28,6 +51,10 @@ class _BodyState extends State<Body> {
             realvalue: val,
             arg3: 'Distance',
           ),
+          const Divider(),
+          const SizedBox(
+            height: 20,
+          ),
           MySlider(
             arg1: '18',
             arg2: '65+',
@@ -39,32 +66,104 @@ class _BodyState extends State<Body> {
             realvalue: val2,
             arg3: 'Age',
           ),
+          const Divider(),
+          const SizedBox(
+            height: 20,
+          ),
+          const HeaderRow(
+            text1: 'I want to meet',
+            text2: 'select one choice',
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20),
+            child: Wrap(
+              spacing: 5,
+              runSpacing: 10,
+              children: List.generate(
+                  items.length,
+                  (index) => GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            boxValue = index;
+                          });
+                        },
+                        child: RoundedContainer(
+                            boxValue: boxValue, items: items, index: index),
+                      )),
+            ),
+          ),
+          const Divider(
+            thickness: 1,
+          ),
           // const SizedBox(
-          //   height: 10,
+          //   height: 5,
           // ),
-          Expanded(
-            child: GridView.builder(
-                itemCount: 4,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: MediaQuery.of(context).orientation ==
-                          Orientation.landscape
-                      ? 4
-                      : 3,
-                  crossAxisSpacing: 4,
-                  mainAxisSpacing: 4,
-                  // childAspectRatio: (2 / 1),
-                ),
-                itemBuilder: (context, __) => GestureDetector(
-                    onTap: () {},
-                    child: Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: const <Widget>[
-                          RoundedContainer(text: "Text"),
-                        ],
-                      ),
-                    ))),
+          const HeaderRow(
+            text1: 'Who are',
+            text2: 'select one choice',
+          ),
+
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20),
+            child: Wrap(
+              spacing: 5,
+              runSpacing: 10,
+              children: List.generate(
+                  items2.length,
+                  (index) => GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            boxValue2 = index;
+                          });
+                        },
+                        child: RoundedContainer(
+                            boxValue: boxValue2, items: items2, index: index),
+                      )),
+            ),
+          ),
+          const Divider(
+            thickness: 1,
+          ),
+          const HeaderRow(
+            text1: 'And are',
+            text2: 'select one choice',
+          ),
+
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20),
+            child: Wrap(
+              spacing: 5,
+              runSpacing: 10,
+              children: List.generate(
+                  items3.length,
+                  (index) => GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            boxValue3 = index;
+                          });
+                        },
+                        child: RoundedContainer(
+                            boxValue: boxValue3, items: items3, index: index),
+                      )),
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+
+          Center(
+            child: GestureDetector(
+              onTap: () {},
+              child: Text(
+                'Update Filter',
+                style: TextStyle(
+                    color: Colors.pink[200],
+                    decoration: TextDecoration.underline),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 40,
           )
         ],
       ),
@@ -73,88 +172,68 @@ class _BodyState extends State<Body> {
 }
 
 class RoundedContainer extends StatelessWidget {
-  final String text;
-  const RoundedContainer({
-    Key? key,
-    required this.text,
-  }) : super(key: key);
+  const RoundedContainer(
+      {Key? key,
+      required this.boxValue,
+      required this.items,
+      required this.index})
+      : super(key: key);
+
+  final int boxValue;
+  final List<String> items;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 40,
-      width: 130,
+      width: 110,
       decoration: BoxDecoration(
-          shape: BoxShape.rectangle,
-          borderRadius: BorderRadius.circular(10),
-          color: Colors.grey[100]),
-      child: Center(child: Text(text)),
+          color: boxValue == index ? Colors.pink[100] : Colors.grey[300],
+          borderRadius: const BorderRadius.all(
+            Radius.circular(20),
+          )),
+      child: Center(
+          child: Text(
+        items[index],
+        style: const TextStyle(fontSize: 12),
+        overflow: TextOverflow.ellipsis,
+      )),
     );
   }
 }
 
-class MySlider extends StatelessWidget {
-  const MySlider(
-      {Key? key,
-      required this.press,
-      required this.realvalue,
-      required this.arg1,
-      required this.arg2,
-      required this.arg3})
-      : super(key: key); // inactiveColor: Colors.grey,
+class HeaderRow extends StatelessWidget {
+  const HeaderRow({
+    Key? key,
+    required this.text1,
+    required this.text2,
+  }) : super(key: key);
 
-  final Function(double x)? press;
-  final String? arg1, arg2, arg3;
-  final double? realvalue;
+  final String text1;
+  final String text2;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(
-          height: 10,
-        ),
-        Row(
-          children: <Widget>[
-            const SizedBox(
-              width: 30,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Text(
+            text1,
+            style: const TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.bold,
             ),
-            Text(
-              arg3!,
-              style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w800),
-            )
-          ],
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        SizedBox(
-            height: 10,
-            child: Slider(
-              value: realvalue!,
-              onChanged: press!,
-              min: 0,
-              max: 68,
-              activeColor: Colors.pink[300],
-              inactiveColor: Colors.grey[200],
-            )),
-        // const SizedBox(
-        //   height: 5,
-        // ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(
-                arg1!,
-                style: const TextStyle(fontSize: 10),
-              ),
-              Text(arg2!, style: const TextStyle(fontSize: 10))
-            ],
           ),
-        ),
-      ],
+          Text(text2,
+              style: const TextStyle(
+                fontSize: 10,
+                fontWeight: FontWeight.w400,
+              ))
+        ],
+      ),
     );
   }
 }
